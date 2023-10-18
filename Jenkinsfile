@@ -24,7 +24,7 @@ pipeline {
     post {
         success {
             echo 'Build successful!'
-            archiveArtifacts 'complete-pipeline/target/*.jar' // Adjust path for artifacts
+            archiveArtifacts 'target/*.jar' // Adjust path for artifacts
         }
         failure {
             echo 'Build failed!'
