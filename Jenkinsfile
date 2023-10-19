@@ -23,7 +23,7 @@ pipeline {
         stage('Quality Gate Status'){
             steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-Token'
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-webhook'
                 }
             }
         }
