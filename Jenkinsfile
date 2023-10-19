@@ -20,6 +20,13 @@ pipeline {
                 }
             }
         }
+        stage('Quality Gate Status'){
+            steps {
+                scripts {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-Token'
+                }
+            }
+        }
     }
     post {
         success {
