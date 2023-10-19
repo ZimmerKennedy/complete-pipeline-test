@@ -27,6 +27,13 @@ pipeline {
                 }
             }
         }
+        stage('Upload Artifact to Nexus'){
+            steps {
+                script {
+                    nexusArtifactUploader artifacts: [[artifactId: 'complete-pipeline', classifier: '', file: 'target/spring-boot-web.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'com.complete-pipeline', nexusUrl: '20.62.5.145:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-hosted', version: '0.0.1-SNAPSHOT'
+                }
+            }
+        }
     }
     post {
         success {
