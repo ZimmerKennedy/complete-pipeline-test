@@ -55,9 +55,11 @@ pipeline {
         stage('Docker Image Build'){
             steps {
                 script {
+                    withDockerRegistry(credentialsId: 'jenkins-auth', toolName: 'docker-jenkins') {
                     sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID'
                     sh 'docker image tag $JOB_NAME:v1.$BUILD_ID zimmerkennedy/$JOB_NAME:v1.$BUILD_ID'
                     sh 'docker image tag $JOB_NAME:v1.$BUILD_ID zimmerkennedy/$JOB_NAME:v1.latest'
+                    }
                 }
             }
         }
