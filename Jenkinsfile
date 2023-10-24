@@ -59,6 +59,7 @@ pipeline {
                     sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
                     sh 'docker image tag $JOB_NAME:v1.$BUILD_ID zimmerkennedy/$JOB_NAME:v1.$BUILD_ID'
                     sh 'docker image tag $JOB_NAME:v1.$BUILD_ID zimmerkennedy/$JOB_NAME:v1.latest'
+                    sh 'docker push zimmerkennedy/$JOB_NAME:v1.$BUILD_ID'
                     }
                 }
             }
