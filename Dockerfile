@@ -1,12 +1,11 @@
-# --- Build Stage ---
-FROM maven:3.8.3-jdk-11-slim AS build
+FROM maven as build
 WORKDIR /app
 COPY . .
-RUN mvn clean install
+RUN mvn install
 
-# --- Package Stage ---
-FROM openjdk:11.0-jre-slim
+FROM openjdk:11.0
 WORKDIR /app
 COPY --from=build /app/target/spring-boot-web.jar /app/
 EXPOSE 9090
-CMD [ "java", "-jar", "spring-boot-web.jar" ]
+CMD [ "java","-jar","spring-boot-web.jar" ]
+
